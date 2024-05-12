@@ -11,6 +11,6 @@ public class UsersDTO {
     private Integer id;
     private String email;
     private String name;
-    private UserFeaturesDTO userFeaturesId;
+    private UserFeaturesDTO userFeaturesID;
     private String role;
 }

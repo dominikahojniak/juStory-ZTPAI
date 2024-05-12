@@ -1,0 +1,16 @@
+.platform-item {
+    margin-right: 10px;
+}
+.platform-image {
+    width: 65px;
+    height: 65px;
+}
+.options{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (max-width: 900px) {
+    
+}

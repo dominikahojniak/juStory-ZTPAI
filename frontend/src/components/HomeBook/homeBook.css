@@ -1,0 +1,24 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap');
+
+.news-container {
+    width: 200px;
+    height: 100%;
+}
+.news-image {
+    width: 120px;
+    height: 160px;
+}
+.news-description h3 {
+    margin-top: 5px;
+    color: #D2CBC1;
+    font-size: 20px;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 400;
+    align-items: center;
+    text-decoration: none;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

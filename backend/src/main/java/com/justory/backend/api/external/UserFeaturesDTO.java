@@ -9,5 +9,4 @@ import lombok.experimental.Accessors;
 public class UserFeaturesDTO {
     private Integer id;
     private Long phone;
-    private UsersDTO user;
 }

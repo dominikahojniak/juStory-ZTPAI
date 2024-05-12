@@ -1,25 +1,40 @@
 package com.justory.backend.controller;
-
-import com.justory.backend.api.external.UserFeaturesDTO;
 import com.justory.backend.api.external.UsersDTO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.justory.backend.api.internal.Users;
+import com.justory.backend.service.JwtService;
+import com.justory.backend.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 public class UsersController {
-    @GetMapping
-    public List<UsersDTO> getUsers() {
-        return List.of(
-                new UsersDTO()
-                        .setId(1)
-                        .setEmail("Sample email")
-                        .setName("Sample Name")
-                        .setUserFeaturesId(new UserFeaturesDTO().setId(1).setPhone(1234567890L))
-                        .setRole("user")
-        );
+    private final UserService userService;
+    private final JwtService jwtService;
+    @Autowired
+    public UsersController(UserService userService, JwtService jwtService) {
+        this.userService = userService;
+        this.jwtService = jwtService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UsersDTO> getUser(@PathVariable Integer id) {
+        UsersDTO userDTO = userService.getUserById(id);
+        return ResponseEntity.ok().body(userDTO);
+    }
+    @GetMapping("/profile")
+    public ResponseEntity<UsersDTO> getUserProfile(Authentication authentication) {
+        Users currentUser = (Users) authentication.getPrincipal();
+        String userEmail = currentUser.getEmail();
+        UsersDTO userDTO = userService.getUserByEmail(userEmail);
+        if (userDTO != null) {
+            return ResponseEntity.ok(userDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

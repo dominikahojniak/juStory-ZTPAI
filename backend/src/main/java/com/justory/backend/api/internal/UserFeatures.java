@@ -1,5 +1,6 @@
 package com.justory.backend.api.internal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,8 @@ public class UserFeatures {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Long phone;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "userFeaturesId")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonBackReference
     private Users user;
 }
