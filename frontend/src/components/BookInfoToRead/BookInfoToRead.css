@@ -40,13 +40,14 @@
     align-items: center;
 }
 #remove-button{
-    color: #D2CBC1;
-    background-color: #4f2525;
+    color: #0B0C0B;
+    background-color: #521111;
     font-family:'Frank Ruhl Libre', serif;
+    font-weight: 500;
     font-size:20px;
     width: 189px;
     height: 67px;
-    border-radius: 7px;
+    border-radius: 0px;
     margin-top: 0px;
     border: none;
 }

@@ -76,15 +76,17 @@ body {
 }
 
 .logout-profile {
-    color: #588527;
-    width: 50vw;
+    background-color: #4D5038;
+    color: #0A0805;
+    width: 24vw;
+    height: 7vh;
     font-size: 30px;
     font-family: 'Frank Ruhl Libre', serif;
     font-weight: 400;
-    box-shadow: 0 1px 1px #000000;
     margin-top: 70px;
     padding: 5px;
     text-decoration: none;
+    border: none;
 }
 
 /* stopka */

@@ -24,7 +24,22 @@
     min-height: 100vh;
     overflow-y: auto;
   }
-  
+.search-items{
+  width: calc(100vw - 54vw);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  font-size: 24px;
+  color: #D2CBC1;
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 400;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 1px 1px #000000;
+  padding-left: 1%;
+}
   .search {
     font-family: 'Frank Ruhl Libre', serif;
     color: #D2CBC1;
@@ -35,6 +50,13 @@
     width: calc(100vw - 30rem);
     margin: 0 auto;
   }
+.book-cover {
+  width: 120px;
+  height: 160px;
+}
+.cover-search{
+  margin-right: 1%;
+}
   @media (max-width: 900px) {
     body {
       width: calc(100vw - 1px);
@@ -49,5 +71,7 @@
       margin-top: 5vh;
       width: calc(100vw - 1px);
     }
-  
+    .search-items{
+      width: 100vw;
+    }
   }

@@ -9,6 +9,7 @@
     align-items: center;
     background-color: #0B0C0B;
     box-shadow: 0 1px 1px #000000;
+    z-index: 999;
 }
 
 .images-container img {

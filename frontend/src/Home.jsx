@@ -49,7 +49,7 @@ const Home = () => {
                 </div>
                 <div className="news">
                     {books.map((book) => (
-                        <HomeBook key={book.id} imageSrc={cover} title={book.title} />
+                        <HomeBook key={book.id} imageSrc={`data:image/jpeg;base64, ${book.img}`} title={book.title} />
                     ))}
                 </div>
             </main>

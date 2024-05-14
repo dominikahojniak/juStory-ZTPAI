@@ -1,5 +1,7 @@
 package com.justory.backend.controller;
+import com.justory.backend.api.external.UserFeaturesDTO;
 import com.justory.backend.api.external.UsersDTO;
+import com.justory.backend.api.internal.UserFeatures;
 import com.justory.backend.api.internal.Users;
 import com.justory.backend.service.JwtService;
 import com.justory.backend.service.UserService;
@@ -32,6 +34,11 @@ public class UsersController {
         String userEmail = currentUser.getEmail();
         UsersDTO userDTO = userService.getUserByEmail(userEmail);
         if (userDTO != null) {
+            UserFeatures userFeatures = userService.getUserFeaturesByEmail(userEmail); // Pobierz dane z tabeli user_features
+            if (userFeatures != null) {
+                UserFeaturesDTO userFeaturesDTO = new UserFeaturesDTO().setPhone(userFeatures.getPhone());
+                userDTO.setUserFeaturesID(userFeaturesDTO);
+            }
             return ResponseEntity.ok(userDTO);
         } else {
             return ResponseEntity.notFound().build();

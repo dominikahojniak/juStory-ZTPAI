@@ -4,10 +4,10 @@ import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import profileImage from './img/duzeprofil.svg';
 import axios from '../axiosConfig.js';
-
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
     const [userProfile, setUserProfile] = useState(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
@@ -16,8 +16,8 @@ const Profile = () => {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
-                const { email, name } = response.data;
-                setUserProfile({ email, name });
+                const { email, name, userFeaturesID } = response.data;
+                setUserProfile({ email, name, phone: userFeaturesID.phone });
             } catch (error) {
                 console.error('Error fetching user profile:', error);
             }
@@ -25,7 +25,10 @@ const Profile = () => {
 
         fetchUserProfile();
     }, []);
-
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Usunięcie tokena z localStorage
+        navigate('/login'); // Przekierowanie użytkownika na stronę logowania
+    };
     return (
         <div className='profile-container'>
             <Header activePage="profile" />
@@ -33,15 +36,13 @@ const Profile = () => {
                 <div className="profile">
                     Profile
                 </div>
-                <div className="profilepic">
-                    <img className="profile-image" src={profileImage} alt="Profile Image"/>
-                </div>
                 {userProfile && (
-                <div className="news-profile">
-                    <div className="name-profile">{userProfile.name}</div>
-                    <div className="email-profile">{userProfile.email}</div>
-                    <a href="/login" className="logout-profile">Log out</a>
-                </div>
+                    <div className="news-profile">
+                        <div className="name-profile">{userProfile.name}</div>
+                        <div className="email-profile">{userProfile.email}</div>
+                        <div className="email-profile">{userProfile.phone}</div>
+                        <button onClick={handleLogout} className="logout-profile">Log out</button>
+                    </div>
                 )}
             </main>
             <Footer showProfileAndHello={false}/>

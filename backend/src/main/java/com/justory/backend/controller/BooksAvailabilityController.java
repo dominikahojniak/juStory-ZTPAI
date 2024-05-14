@@ -16,13 +16,6 @@ public class BooksAvailabilityController {
     @GetMapping
     public List<BooksAvailabilityDTO> booksAvailability() {
         return List.of(
-                new BooksAvailabilityDTO()
-                        .setId(1)
-                        .setBook(new BooksDTO())
-                        .setPlatform(new PlatformsDTO())
-                        .setFormat(new BookFormatsDTO())
-                        .setSubscriptionRequired(true)
-                        .setPurchaseOption(true)
         );
     }
 }

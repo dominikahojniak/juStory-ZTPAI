@@ -9,6 +9,7 @@ import Search from './Search.jsx';
 import ToRead from './ToRead.jsx';
 import Profile from './Profile.jsx';
 import Book from './Book.jsx';
+import AddBook from "./AddBook.jsx";
 const App = () => {
     return (
         <Router>
@@ -22,6 +23,7 @@ const App = () => {
                 <Route exact path="/toRead" element={<ToRead/>} />
                 <Route exact path="/profile" element={<Profile/>} />
                 <Route exact path="/book" element={<Book/>} />
+                <Route exact path="/addbook" element={<AddBook/>} />
             </Routes>
         </Router>
     );

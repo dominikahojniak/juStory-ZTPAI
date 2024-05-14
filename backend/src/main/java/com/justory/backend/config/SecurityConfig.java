@@ -36,7 +36,14 @@ public class SecurityConfig {
                                 HttpMethod.GET,
                                 "/api/users/**",
                                 "/api/users/profile",
-                                "/api/books"
+                                "/api/books",
+                                "/api/books/premieres",
+                                "/api/search"
+                        )
+                        .permitAll()
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/books/add"
                         )
                         .permitAll()
                         .anyRequest()

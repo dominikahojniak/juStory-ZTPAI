@@ -1,6 +1,7 @@
 package com.justory.backend.service;
 
 import com.justory.backend.api.external.UsersDTO;
+import com.justory.backend.api.internal.UserFeatures;
 import com.justory.backend.api.internal.Users;
 import com.justory.backend.mapper.UserMapper;
 import com.justory.backend.repository.UserRepository;
@@ -27,5 +28,10 @@ public class UserServiceImpl implements UserService{
     public UsersDTO getUserByEmail(String email) {
         Optional<Users> userOptional = userRepository.findUserByEmail(email);
         return userOptional.map(userMapper::toDTO).orElse(null);
+    }
+    public UserFeatures getUserFeaturesByEmail(String email) {
+        return userRepository.findUserByEmail(email)
+                .map(Users::getUserFeaturesID)
+                .orElse(null);
     }
 }

@@ -3,6 +3,7 @@ package com.justory.backend.api.external;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
@@ -16,5 +17,5 @@ public class BooksDTO {
     private String description;
     private String ISBN;
     private LocalDate date;
-    private String img;
+    private byte[] img;
 }

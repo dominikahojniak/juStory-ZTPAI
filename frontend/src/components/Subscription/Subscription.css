@@ -1,0 +1,32 @@
+.sub {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    font-medium: bold;
+    tracking-normal: normal;
+    text-stone-300: #c9c9c9;
+}
+.sub-title {
+    flex-grow: 1;
+    font-size: 1.5rem;
+}
+.sub-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+.subscription-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.subscription-checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.sub-title {
+    white-space: nowrap;
+}
