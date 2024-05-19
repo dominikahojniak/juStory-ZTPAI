@@ -10,5 +10,5 @@ import lombok.experimental.Accessors;
 public class BookFormatsDTO {
     private Integer id;
     private String name;
-    private String img;
+    private byte[] img;
 }

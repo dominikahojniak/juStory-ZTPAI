@@ -18,4 +18,6 @@ public class Platforms {
     private Integer id;
     private String name;
     private String img;
+    private boolean subscriptionRequired; // Dodane pole
+    private boolean purchaseOption;
 }

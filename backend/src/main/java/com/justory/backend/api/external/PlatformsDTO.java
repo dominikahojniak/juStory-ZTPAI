@@ -9,5 +9,7 @@ import lombok.experimental.Accessors;
 public class PlatformsDTO {
     private Integer id;
     private String name;
-    private String img;
+    private byte[] img;
+    private boolean subscriptionRequired; // Dodane pole
+    private boolean purchaseOption;
 }

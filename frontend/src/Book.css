@@ -69,6 +69,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 #add-button{
     color: #D2CBC1;
@@ -80,6 +81,15 @@ body{
     border-radius: 7px;
     margin-top: 0px;
     border: none;
+}
+.good-result{
+    font-family: 'Frank Ruhl Libre', serif;
+    color: #596312;
+}
+.bad-result{
+    margin-top: 10px;
+    font-family: 'Frank Ruhl Libre', serif;
+    color: #b42222;
 }
 .main-book >.right{
     width: calc(7 * 100vw / 12);
@@ -109,12 +119,13 @@ body{
     font-weight: 400;
 }
 .news-description-book p {
-    margin-top: 5px; 
     color: #D2CBC1;
     font-size: 18px;
     font-family: 'Frank Ruhl Libre', serif;
     font-weight: 400;
     margin-left: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .subscription{
     width: 512px;

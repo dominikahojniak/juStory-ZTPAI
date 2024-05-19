@@ -23,7 +23,7 @@ public class BackendApplication {
                                    final UserRepository userRepository
     ) {
         return args -> {
-
+            /*
             UserFeatures userFeatures = new UserFeatures()
                     .setPhone(1234567890L);
             Users user = new Users()
@@ -33,7 +33,7 @@ public class BackendApplication {
                     .setRole("user")
                     .setUserFeaturesID(userFeatures);
             userFeatures.setUser(user);
-            userRepository.save(user);
+            userRepository.save(user);*/
         };
     }
 }

@@ -1,11 +1,13 @@
 package com.justory.backend.controller;
 
-import com.justory.backend.api.external.BooksDTO;
+import com.justory.backend.api.external.*;
+import com.justory.backend.service.BookAvailabilityService;
 import com.justory.backend.service.BookService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
     public class BooksController {
 
     private final BookService bookService;
+    private final BookAvailabilityService bookAvailabilityService;
 
     @GetMapping("/{id}")
     public BooksDTO getBook(@PathVariable Integer id) {
@@ -37,22 +40,24 @@ import java.util.stream.Collectors;
         BooksDTO addedBook = bookService.addBook(bookDTO, file);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedBook);
     }
+    @PostMapping(value = "/addWithAvailability")
+    public ResponseEntity<BooksDTO> addBookWithAvailability(
+            @RequestPart("file") MultipartFile file,
+            @ModelAttribute BooksWithAvailabilityRequest request) {
+        BooksDTO addedBook = bookService.addBookWithAvailability(file, request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addedBook);
+    }
     @GetMapping("/premieres")
     public List<BooksDTO> getPremieresForCurrentMonth() {
-        // Pobierz aktualną datę
         LocalDate currentDate = LocalDate.now();
-        // Utwórz obiekt YearMonth na podstawie aktualnej daty
         YearMonth currentYearMonth = YearMonth.from(currentDate);
-        // Pobierz książki z bieżącego miesiąca
         List<BooksDTO> allBooks = bookService.getAllBooks();
-        // Wybierz tylko te książki, których data premiery jest w bieżącym miesiącu
         List<BooksDTO> premieresForCurrentMonth = allBooks.stream()
                 .filter(book -> {
                     YearMonth premiereYearMonth = YearMonth.from(book.getDate());
                     return premiereYearMonth.equals(currentYearMonth);
                 })
                 .collect(Collectors.toList());
-
         return premieresForCurrentMonth;
     }
 }

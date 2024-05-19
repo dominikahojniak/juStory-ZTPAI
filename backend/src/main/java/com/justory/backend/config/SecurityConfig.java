@@ -36,16 +36,21 @@ public class SecurityConfig {
                                 HttpMethod.GET,
                                 "/api/users/**",
                                 "/api/users/profile",
-                                "/api/books",
+                                "/api/books/**",
                                 "/api/books/premieres",
-                                "/api/search"
+                                "/api/search",
+                                "/api/platforms",
+                                "/api/formats",
+                                "/api/availability/**"
                         )
                         .permitAll()
                         .requestMatchers(
                                 HttpMethod.POST,
-                                "/api/books/add"
+                                "/api/books/add",
+                                "api/toread//addbook/**"
                         )
                         .permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/books/addWithAvailability").hasRole("admin")
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(sessionManagement -> sessionManagement

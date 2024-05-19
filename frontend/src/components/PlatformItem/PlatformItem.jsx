@@ -3,13 +3,12 @@ import './PlatformItem.css';
 import Legimi from '../../img/legimi.svg';
 import Ebook from '../../img/ebook.svg';
 import Headphones from '../../img/headphones.svg';
-function PlatformItem() {
+function PlatformItem({ platformImg, formatImg }) {
     return (
         <div className="platform-item">
-            <img src={Legimi} className="platform-image" alt="Legimi Logo" />
+            <img  className="platform-image" src={platformImg} alt="Platform Logo" />
             <div className="options">
-                <img src={Ebook} alt="Ebook Icon" />
-                <img src={Headphones} alt="Headphones Icon" />
+                <img src={formatImg} alt="Format Icon" />
             </div>
         </div>
     );
