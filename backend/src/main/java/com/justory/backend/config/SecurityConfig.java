@@ -41,14 +41,17 @@ public class SecurityConfig {
                                 "/api/search",
                                 "/api/platforms",
                                 "/api/formats",
-                                "/api/availability/**"
+                                "/api/availability/**",
+                                "/api/toread/**"
                         )
                         .permitAll()
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/books/add",
-                                "api/toread//addbook/**"
+                                "api/toread/addbook/**"
                         )
+                        .permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/toread/removebook/**")
                         .permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/books/addWithAvailability").hasRole("admin")
                         .anyRequest()

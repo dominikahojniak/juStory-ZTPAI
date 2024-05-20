@@ -1,10 +1,7 @@
 package com.justory.backend.controller;
 
 import com.justory.backend.api.external.BooksDTO;
-import com.justory.backend.api.external.UserFeaturesDTO;
-import com.justory.backend.api.external.UserToReadListDTO;
 import com.justory.backend.api.external.UsersDTO;
-import com.justory.backend.api.internal.Users;
 import com.justory.backend.service.JwtService;
 import com.justory.backend.service.UserService;
 import com.justory.backend.service.UserToReadListService;
@@ -13,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,7 +26,16 @@ public class UserToReadListController {
         this.jwtService = jwtService;
         this.userService = userService;
     }
-
+    @GetMapping("/all")
+    public ResponseEntity<?> getUserToReadBooks(@RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            Integer userId = getUserIdFromAuthorizationHeader(authorizationHeader);
+            List<BooksDTO> toReadBooks = userToReadListService.getUserToReadBooks(userId);
+            return ResponseEntity.ok(toReadBooks);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
+    }
     @PostMapping("/addbook/{bookId}")
     public ResponseEntity<?> addBookToUserToReadList(@PathVariable("bookId") Integer bookId, @RequestHeader("Authorization") String authorizationHeader) {
         try {
@@ -44,7 +49,17 @@ public class UserToReadListController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding book to user's to-read list");
         }
     }
-
+    @DeleteMapping("/removebook/{bookId}")
+    public ResponseEntity<?> deleteBookFromUserToReadList(@PathVariable("bookId") Integer bookId, @RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            Integer userId = getUserIdFromAuthorizationHeader(authorizationHeader);
+            userToReadListService.removeBookFromUserToReadList(userId, bookId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception for debugging
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error removing book from user's to-read list");
+        }
+    }
     private Integer getUserIdFromAuthorizationHeader(String authorizationHeader) throws Exception {
         String jwtToken = authorizationHeader.substring(7); // Usuń "Bearer " z nagłówka
         String userEmail = jwtService.extractEmail(jwtToken);

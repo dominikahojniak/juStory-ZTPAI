@@ -1,22 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ToRead.css'; 
 import okladka from './img/okladka.jpg';
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import BookInfoToRead from './components/BookInfoToRead/BookInfoToRead.jsx';
+import axios from '../axiosConfig.js';
 function ToRead() {
-  return (
+    const [toReadBooks, setToReadBooks] = useState([]);
+    useEffect(() => {
+        // Pobierz książki użytkownika z listy ToRead po załadowaniu komponentu
+        fetchToReadBooks();
+    }, []);
+
+    const fetchToReadBooks = async () => {
+        try {
+            const response = await axios.get('/api/toread/all', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            setToReadBooks(response.data);
+        } catch (error) {
+            console.error('Error fetching ToRead books:', error);
+        }
+    };
+    const removeBook = async (bookId) => {
+        try {
+            await axios.delete(`/api/toread/removebook/${bookId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            setToReadBooks(toReadBooks.filter(book => book.id !== bookId));
+        } catch (error) {
+            console.error('Error removing book from ToRead list:', error);
+        }
+    };
+    return (
     <div className='toread-container'>
     <Header activePage="toRead" />
       <main className='main-toread'>
         <div className="toRead">ToRead</div>
         <div className="news-toread">
-            <BookInfoToRead title="Title 1" author="Author 1" imageSrc={okladka} />
-            <BookInfoToRead title="Title 1" author="Author 1" imageSrc={okladka} />
-            <BookInfoToRead title="Title 1" author="Author 1" imageSrc={okladka} />
-            <BookInfoToRead title="Title 1" author="Author 1" imageSrc={okladka} />
-            <BookInfoToRead title="Title 1" author="Author 1" imageSrc={okladka} />
-            <BookInfoToRead title="Title 1" author="Author 1" imageSrc={okladka} />
+            {toReadBooks.map((book) => (
+                <BookInfoToRead
+                    key={book.id}
+                    id={book.id}
+                    title={book.title}
+                    author={book.author}
+                    imageSrc={`data:image/jpeg;base64, ${book.img}`}
+                    removeBook={removeBook}
+                />
+            ))}
         </div>
       </main>
       <Footer showProfileAndHello={false}/>
