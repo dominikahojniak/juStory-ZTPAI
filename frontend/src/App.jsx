@@ -10,9 +10,12 @@ import ToRead from './ToRead.jsx';
 import Profile from './Profile.jsx';
 import Book from './Book.jsx';
 import AddBook from "./AddBook.jsx";
+import Help from './Help.jsx';
+import AboutUs from './AboutUs.jsx';
+import Contact from './Contact.jsx';
 import axios from '../axiosConfig.js';
 const App = () => {
-    const isLoggedIn = localStorage.getItem('token');
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
     const [userRole, setUserRole] = useState('');
 
     useEffect(() => {
@@ -23,6 +26,8 @@ const App = () => {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
+                console.log(response.data.role);
+                setIsLoggedIn(true);
                 setUserRole(response.data.role);
             } catch (error) {
                 console.error('Error fetching user profile:', error);
@@ -42,7 +47,6 @@ const App = () => {
                 <Route exact path="/search" element={<Search/>} />
                 {isLoggedIn ? (
                     <Route exact path="/toRead" element={<ToRead/>} />
-
                 ) : (
                     <Route exact path="/toRead" element={<Navigate to="/login" />} />
                 )}
@@ -53,7 +57,10 @@ const App = () => {
                 ) : (
                     <Route exact path="/addbook" element={<Navigate to="/home" />} />
                 )}
-                <Route exact path="/addbook" element={<AddBook/>} />
+
+                <Route exact path="/help" element={<Help />} />
+                <Route exact path="/aboutus" element={<AboutUs />} />
+                <Route exact path="/contact" element={<Contact />} />
             </Routes>
         </Router>
     );

@@ -48,7 +48,9 @@ body{
     margin-right: auto;
     margin-top: 1%;
 }
-
+.premiereBook-link {
+    text-decoration: none !important;
+}
 /*stopka*/
 @media (max-width: 900px) {
     body{

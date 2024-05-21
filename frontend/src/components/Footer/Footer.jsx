@@ -1,15 +1,17 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './footer.css';
 import linkedin from '../../img/linkedin.svg';
 import facebook from '../../img/fb.svg';
 import ig from '../../img/ig.svg';
 const Footer = ({ showProfileAndHello , username}) => {
+    const location = useLocation();
     return (
         <footer className={`footer-id ${showProfileAndHello ? 'home-footer-visible' : 'no'}`}>
             <ul className="footer-list">
-                <li><a href="help.html">Help</a></li>
-                <li><a href="aboutUs.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/help" className={location.pathname === '/help' ? 'active' : ''}>Help</a></li>
+                <li><a href="/aboutus" className={location.pathname === '/aboutus' ? 'active' : ''}>About Us</a></li>
+                <li><a href="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</a></li>
                 {showProfileAndHello && <li>Hello {username}</li>}
             </ul>
             <div className="media-footer">

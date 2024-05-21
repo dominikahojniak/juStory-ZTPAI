@@ -102,11 +102,12 @@ const AddBook = () => {
             selectedFormats.forEach((formatId, index) => {
                 formData.append(`formats[${index}].id`, formatId);
             });
-
+            const token = localStorage.getItem('token');
 
             const response = await axios.post('/api/books/addWithAvailability', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
                 }
             });
 

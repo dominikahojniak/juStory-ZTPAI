@@ -26,7 +26,7 @@ const SignUp = () => {
                 password: password,
             });
             localStorage.setItem('token', response.data.token);
-            navigate('/login');
+            navigate('/');
         } catch (error) {
             console.error('Registration failed:', error.response.data);
             alert('Registration failed');

@@ -57,6 +57,14 @@
 .cover-search{
   margin-right: 1%;
 }
+
+.search-link {
+  text-decoration: none !important;
+}
+.search-item-container{
+  width: calc(100vw - 30rem);
+  margin: 0 auto;
+}
   @media (max-width: 900px) {
     body {
       width: calc(100vw - 1px);

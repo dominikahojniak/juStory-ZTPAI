@@ -1,9 +1,10 @@
-.news-container-toread > img{
+.news-container-toread > .book-link > img{
     width: 120px;
     height: 160px;
     margin-bottom: 1%;
     margin-top: 1%;
 }
+
 .news-container-toread{
     display: flex;
     align-items: flex-start;

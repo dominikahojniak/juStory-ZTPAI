@@ -3,6 +3,7 @@ import './Search.css';
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import Searching from './components/Searching/Searching.jsx';
+import { Link } from 'react-router-dom';
 const Search = () => {
     const [searchResults, setSearchResults] = useState([]);
 
@@ -17,10 +18,14 @@ const Search = () => {
             <div className="search">Search</div>
             <Searching onSearchResults={handleSearchResults}/>
                 {searchResults.map((book) => (
+                    <div className="search-item-container" key={book.id}>
+                    <Link to={`/book/${book.id}`} key={book.id} className="search-link">
                     <div key={book.id} className="search-items">{book.title} by {book.author}
                         <div className="cover-search">
                             <img src={`data:image/jpeg;base64, ${book.img}`} alt="Book cover" className="book-cover"/>
                         </div>
+                    </div>
+                    </Link>
                     </div>
                 ))}
         </main>

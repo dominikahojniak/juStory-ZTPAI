@@ -27,6 +27,9 @@
     text-decoration: none;
     color: #D2CBC1;
 }
+.footer-list li a.active {
+    color: #6F7D09;
+}
 .media-footer{
     margin-right: 1%;
 }

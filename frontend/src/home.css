@@ -11,6 +11,7 @@ main{
     margin-top: 0;
     position: fixed;
     left: 0;
+    text-decoration: none ;
 }
 #root{
     height: 100vh;
@@ -66,6 +67,7 @@ body{
     margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
+    text-decoration: none ;
 }
 
 /*stopka*/

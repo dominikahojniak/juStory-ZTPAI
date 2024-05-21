@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ToRead.css'; 
-import okladka from './img/okladka.jpg';
+import './ToRead.css';
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import BookInfoToRead from './components/BookInfoToRead/BookInfoToRead.jsx';

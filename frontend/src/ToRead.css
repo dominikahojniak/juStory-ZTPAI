@@ -49,7 +49,9 @@ body{
     margin-right: auto;
     margin-top: 1%;
 }
-
+.toRead-link{
+    text-decoration: none !important;
+}
 /*stopka*/
 @media (max-width: 900px) {
 

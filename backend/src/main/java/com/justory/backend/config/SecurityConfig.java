@@ -53,7 +53,7 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/toread/removebook/**")
                         .permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/books/addWithAvailability").hasRole("admin")
+                        .requestMatchers(HttpMethod.POST, "/api/books/addWithAvailability").permitAll()
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(sessionManagement -> sessionManagement
