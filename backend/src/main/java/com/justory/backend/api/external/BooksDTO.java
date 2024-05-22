@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @Accessors(chain = true)
@@ -18,4 +19,5 @@ public class BooksDTO {
     private String ISBN;
     private LocalDate date;
     private byte[] img;
+    private Set<CategoryDTO> categories;
 }

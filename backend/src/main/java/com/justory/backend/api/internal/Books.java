@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
@@ -24,4 +25,11 @@ public class Books {
     private String ISBN;
     private LocalDate date;
     private String img;
+    @ManyToMany
+    @JoinTable(
+            name = "books_categories",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
 }
