@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap');
 
 .news-container-homebook {
+    position: relative;
     width: 200px;
     height: 100%;
     text-decoration: none !important;
@@ -19,6 +20,14 @@
 .news-container-homebook a:active {
     text-decoration: none !important;
 }
+.news-description-homebook {
+    height: 60px; /* Ograniczenie wysokości kontenera dla tytułu */
+    overflow: hidden; /* Ukryj nadmiarowy tekst */
+    position: absolute; /* Ustawienie absolutne dla opisu */
+    bottom: 0; /* Ustawienie na dole */
+    left: 0;
+    right: 0;
+}
 .news-description-homebook h3 {
     margin-top: 5px;
     color: #D2CBC1;
@@ -27,8 +36,8 @@
     font-weight: 400;
     align-items: center;
     overflow-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
+    white-space: normal; /* Ustawienie normalnej spacji */
+    overflow: hidden; /* Ukryj nadmiarowy tekst */
     text-overflow: ellipsis;
 }
 
