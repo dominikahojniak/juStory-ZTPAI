@@ -19,21 +19,9 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class, args);
     }
     @Bean
-    public CommandLineRunner init( final BooksRepository booksRepository,
-                                   final UserRepository userRepository
+    public CommandLineRunner init(
     ) {
         return args -> {
-            /*
-            UserFeatures userFeatures = new UserFeatures()
-                    .setPhone(1234567890L);
-            Users user = new Users()
-                    .setEmail("example@email.com")
-                    .setName("Example Name")
-                    .setPassword("examplePassword")
-                    .setRole("user")
-                    .setUserFeaturesID(userFeatures);
-            userFeatures.setUser(user);
-            userRepository.save(user);*/
         };
     }
 }

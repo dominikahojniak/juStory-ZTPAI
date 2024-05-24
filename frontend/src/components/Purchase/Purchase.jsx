@@ -1,8 +1,8 @@
 import React from "react";
-import "./Purchase.css"; // Importowanie pliku CSS
+import "./Purchase.css";
 const PurchaseItem = ({ platform, formats, onFormatChange }) => {
     const handleFormatChange = (formatId, isChecked) => {
-        onFormatChange(platform.id, formatId, isChecked, 'purchase'); // Przekazanie informacji o platformie
+        onFormatChange(platform.id, formatId, isChecked, 'purchase');
     };
 
     return (
@@ -15,6 +15,7 @@ const PurchaseItem = ({ platform, formats, onFormatChange }) => {
                         id={`purchase-${platform.id}-${format.id}`}
                         name={`${platform.name}-${format.name}`}
                         onChange={(e) => handleFormatChange(format.id, e.target.checked)}
+                        className="purchase-checkbox"
                     />
                     <label htmlFor={`purchase-${platform.id}-${format.id}`}>{format.name}</label>
                 </div>

@@ -5,10 +5,14 @@
     font-medium: bold;
     tracking-normal: normal;
     text-stone-300: #c9c9c9;
+    color: #D2CBC1;
 }
 .sub-title {
     flex-grow: 1;
     font-size: 1.5rem;
+}
+.subscription-title{
+    color: #588527;
 }
 .sub-list {
     display: flex;
@@ -21,7 +25,12 @@
     align-items: center;
     gap: 0.5rem;
 }
-
+.subscription-format{
+    display: flex;
+    justify-content: center;
+    color: #D2CBC1;
+    font-size: 18px;
+}
 .subscription-checkbox {
     width: 1.5rem;
     height: 1.5rem;
@@ -29,6 +38,21 @@
 
 .sub-title {
     white-space: nowrap;
+}
+.subscription-checkbox {
+    -webkit-appearance: none; /* Remove default appearance */
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #D2CBC1;
+    cursor: pointer;
+    outline: none;
+}
+
+.subscription-checkbox:checked {
+    background-color: #D2CBC1;
+    content: '\2713';/* Kolor tła po zaznaczeniu */
 }
 
 @media (max-width: 900px) {

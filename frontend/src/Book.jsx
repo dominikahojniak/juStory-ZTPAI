@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Book.css';
-import okladka from './img/okladka.jpg';
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import PlatformItem from './components/PlatformItem/PlatformItem.jsx';
@@ -29,15 +28,15 @@ const Book = () => {
         fetchBookData();
     }, [id]);
     const handleAddToReadList = async (e) => {
-        e.preventDefault(); // Zapobiega przeładowaniu strony
+        e.preventDefault();
         try {
             await axios.post(`/api/toread/addbook/${id}`, {}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             });
-            setIsAdded(true); // Ustaw stan, że książka została dodana
-            setAddError(""); // Wyczyszczenie błędu
+            setIsAdded(true);
+            setAddError("");
         } catch (error) {
             if (error.response && error.response.status === 409) {
                 setAddError("Book is already in the to-read list.");

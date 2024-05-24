@@ -10,6 +10,6 @@ public class PlatformsDTO {
     private Integer id;
     private String name;
     private byte[] img;
-    private boolean subscriptionRequired; // Dodane pole
+    private boolean subscriptionRequired;
     private boolean purchaseOption;
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import okladka from './img/okladka.jpg';
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import BookInfoPremieres from './components/BookInfoPremieres/BookInfoPremieres.jsx';
@@ -11,8 +10,9 @@ const Premieres = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get('/api/books/premieres'); // Pobieramy książki z nowego endpointu /api/books/premieres
-                setBooks(response.data);
+                const response = await axios.get('/api/books/premieres');
+                const sortedBooks = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+                setBooks(sortedBooks);
             } catch (error) {
                 console.error('Error fetching books:', error);
             }

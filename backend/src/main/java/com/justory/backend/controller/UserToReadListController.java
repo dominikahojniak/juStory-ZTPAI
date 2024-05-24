@@ -56,12 +56,12 @@ public class UserToReadListController {
             userToReadListService.removeBookFromUserToReadList(userId, bookId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
-            e.printStackTrace(); // Log the exception for debugging
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error removing book from user's to-read list");
         }
     }
     private Integer getUserIdFromAuthorizationHeader(String authorizationHeader) throws Exception {
-        String jwtToken = authorizationHeader.substring(7); // Usuń "Bearer " z nagłówka
+        String jwtToken = authorizationHeader.substring(7);
         String userEmail = jwtService.extractEmail(jwtToken);
         UsersDTO user = userService.getUserByEmail(userEmail);
         if (user != null) {

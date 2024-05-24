@@ -5,13 +5,11 @@ import GreenSearch from '../../img/green-search.svg';
 const Searching = ({ onSearchResults }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-
     const handleSearch = async (e) => {
-        e.preventDefault(); // Zapobieganie domyślnemu zachowaniu formularza
+        e.preventDefault();
         try {
             const response = await axios.get(`/api/search?query=${searchQuery}`);
             setSearchResults(response.data);
-            // Przekazanie wyników wyszukiwania do komponentu Search
             onSearchResults(response.data);
         } catch (error) {
             console.error('Error searching books:', error);

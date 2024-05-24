@@ -16,11 +16,9 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UsersController {
     private final UserService userService;
-    private final JwtService jwtService;
     @Autowired
-    public UsersController(UserService userService, JwtService jwtService) {
+    public UsersController(UserService userService) {
         this.userService = userService;
-        this.jwtService = jwtService;
     }
 
     @GetMapping("/{id}")
@@ -34,7 +32,7 @@ public class UsersController {
         String userEmail = currentUser.getEmail();
         UsersDTO userDTO = userService.getUserByEmail(userEmail);
         if (userDTO != null) {
-            UserFeatures userFeatures = userService.getUserFeaturesByEmail(userEmail); // Pobierz dane z tabeli user_features
+            UserFeatures userFeatures = userService.getUserFeaturesByEmail(userEmail);
             if (userFeatures != null) {
                 UserFeaturesDTO userFeaturesDTO = new UserFeaturesDTO().setPhone(userFeatures.getPhone());
                 userDTO.setUserFeaturesID(userFeaturesDTO);

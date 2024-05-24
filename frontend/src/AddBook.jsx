@@ -20,7 +20,10 @@ const AddBook = () => {
     const [selectedFormats, setSelectedFormats] = useState([]);
     const [subscriptionRequired, setSubscriptionRequired] = useState({});
     const [purchaseOption, setPurchaseOption] = useState({});
-
+    const [errors, setErrors] = useState({
+        ISBN: false,
+        file: false,
+    });
     useEffect(() => {
         const fetchPlatforms = async () => {
             try {
@@ -44,7 +47,6 @@ const AddBook = () => {
         fetchFormats();
     }, []);
     useEffect(() => {
-        // Ustawienie początkowych wartości subscriptionRequired i purchaseOption dla każdej platformy
         const initialSubscriptionRequired = {};
         const initialPurchaseOption = {};
 
@@ -56,13 +58,27 @@ const AddBook = () => {
         setSubscriptionRequired(initialSubscriptionRequired);
         setPurchaseOption(initialPurchaseOption);
     }, [platforms]);
+    const validateISBN = (value) => {
+        const isbnRegex = /^[0-9]{13}$/;
+        return isbnRegex.test(value);
+    };
+    const validateFile = (file) => {
+        const allowedExtensions = ['.png', '.jpg'];
+        const extension = file && file.name.toLowerCase().slice(-4);
+        return file && allowedExtensions.includes(extension);
+    };
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === 'file') {
             setFile(e.target.files[0]);
+            setErrors(prevErrors => ({ ...prevErrors, file: !validateFile(e.target.files[0]) }));
         } else {
             eval(`set${name.charAt(0).toUpperCase() + name.slice(1)}`)(value);
+            if (name === 'ISBN') {
+                setErrors(prevErrors => ({ ...prevErrors, ISBN: !validateISBN(value) }));
+            }
         }
+
     };
 
     const handleFormatChange = (platformId, formatId, isChecked, type) => {
@@ -81,6 +97,10 @@ const AddBook = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (errors.ISBN || errors.file) {
+            alert('Please fix validation errors.');
+            return;
+        }
         if (!title || !author || !ISBN || !date || !language || !description || !file || selectedPlatforms.length === 0 || selectedFormats.length === 0) {
             alert('Please fill in all fields.');
             return;
@@ -129,11 +149,11 @@ const AddBook = () => {
                     <form className="form-addbook" onSubmit={handleSubmit}>
                         <input name="title" type="text" placeholder="title" id="title" value={title} onChange={handleChange} />
                         <input name="author" type="text" placeholder="author" id="author" value={author} onChange={handleChange} />
-                        <input name="ISBN" type="text" placeholder="ISBN" id="ISBN" value={ISBN} onChange={handleChange} />
+                        <input name="ISBN" type="text" placeholder="ISBN" id="ISBN" value={ISBN} onChange={handleChange} className={errors.ISBN ? 'error' : ''}/>
                         <input name="date" type="text" placeholder="date" id="date" value={date} onChange={handleChange} />
                         <input name="language" type="text" placeholder="language" id="language" value={language} onChange={handleChange} />
                         <input name="description" type="text" placeholder="description" id="description" value={description} onChange={handleChange} />
-                        <input name="file" type="file" onChange={handleChange} />
+                        <input name="file" type="file" onChange={handleChange} className={errors.file ? 'error' : ''}/>
                         <Subscription platforms={platforms} formats={formats} onFormatChange={(platformId, formatId, isChecked) => handleFormatChange(platformId, formatId, isChecked, 'subscription')} />
                         <Purchase platforms={platforms} formats={formats} onFormatChange={(platformId, formatId, isChecked) => handleFormatChange(platformId, formatId, isChecked, 'purchase')} />
                         <button type="submit" id="add-button">ADD BOOK</button>

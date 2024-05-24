@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const BookInfoToRead = ({ id, title, author, imageSrc, removeBook }) => {
     const handleRemove = (e) => {
         e.preventDefault();
-        removeBook(id);  // Wywołanie funkcji removeBook przekazanej z komponentu nadrzędnego
+        removeBook(id);
     };
 
   return (

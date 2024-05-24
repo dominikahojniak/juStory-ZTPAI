@@ -51,7 +51,6 @@ body{
 .premiereBook-link {
     text-decoration: none !important;
 }
-/*stopka*/
 @media (max-width: 900px) {
     body{
         width: 100%;

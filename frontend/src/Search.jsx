@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const Search = () => {
     const [searchResults, setSearchResults] = useState([]);
 
-    // Funkcja do przekazywania wyników wyszukiwania z komponentu Searching do komponentu Search
     const handleSearchResults = (results) => {
         setSearchResults(results);
     };

@@ -35,7 +35,6 @@ public class BookAvailabilityServiceImpl implements BookAvailabilityService {
                         .setBook(book)
                         .setPlatform(platform)
                         .setFormat(format)
-                        // Ustawiamy wartości subskrypcji i zakupu na domyślne (możesz to zmienić)
                         .setSubscriptionRequired(platformDTO.isSubscriptionRequired())
                         .setPurchaseOption(platformDTO.isPurchaseOption());
                 availabilities.add(availability);

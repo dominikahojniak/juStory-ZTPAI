@@ -54,9 +54,7 @@ public class UserToReadListServiceImpl implements UserToReadListService {
         userToReadList.setDateAdded(LocalDate.now());
         userToReadListRepository.save(userToReadList);
     }
-    public List<UserToReadList> getUserToReadList(Integer userId) {
-        return userToReadListRepository.findByUserId(userId);
-    }
+
     @Transactional
     @Override
     public void removeBookFromUserToReadList(Integer userId, Integer bookId) {

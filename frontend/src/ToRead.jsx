@@ -7,7 +7,6 @@ import axios from '../axiosConfig.js';
 function ToRead() {
     const [toReadBooks, setToReadBooks] = useState([]);
     useEffect(() => {
-        // Pobierz książki użytkownika z listy ToRead po załadowaniu komponentu
         fetchToReadBooks();
     }, []);
 

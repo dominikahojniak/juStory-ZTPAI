@@ -11,7 +11,6 @@ import java.util.List;
 public interface BookService {
     List<BooksDTO> getAllBooks();
     BooksDTO getBookById(Integer id);
-    BooksDTO addBook(BooksDTO bookDTO, MultipartFile file);
     List<BooksDTO> searchBooks(String query);
     BooksDTO addBookWithAvailability(MultipartFile file, BooksWithAvailabilityRequest request);
 }

@@ -26,8 +26,8 @@ const Profile = () => {
         fetchUserProfile();
     }, []);
     const handleLogout = () => {
-        localStorage.removeItem('token'); // Usunięcie tokena z localStorage
-        navigate('/login'); // Przekierowanie użytkownika na stronę logowania
+        localStorage.removeItem('token');
+        navigate('/login');
     };
     return (
         <div className='profile-container'>

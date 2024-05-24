@@ -5,6 +5,7 @@
     font-medium: bold;
     tracking-normal: normal;
     text-stone-300: #c9c9c9;
+    color: #D2CBC1;
 }
 .purchases-title {
     flex-grow: 1;
@@ -29,6 +30,27 @@
 
 .purchase-title {
     white-space: nowrap;
+    color: #588527;
+}
+.purchase-format{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+}
+.purchase-checkbox {
+    -webkit-appearance: none; /* Remove default appearance */
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #D2CBC1;
+    cursor: pointer;
+    outline: none;
+}
+
+.purchase-checkbox:checked {
+    background-color: #D2CBC1;
+    content: '\2713';/* Kolor tła po zaznaczeniu */
 }
 
 @media (max-width: 900px) {

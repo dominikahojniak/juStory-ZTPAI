@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
     public class BooksController {
 
     private final BookService bookService;
-    private final BookAvailabilityService bookAvailabilityService;
 
     @GetMapping("/{id}")
     public BooksDTO getBook(@PathVariable Integer id) {
@@ -35,11 +34,6 @@ import java.util.stream.Collectors;
         return bookService.getAllBooks();
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<BooksDTO> addBook(@RequestParam("file") MultipartFile file, @ModelAttribute BooksDTO bookDTO) {
-        BooksDTO addedBook = bookService.addBook(bookDTO, file);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addedBook);
-    }
     @PostMapping(value = "/addWithAvailability")
     public ResponseEntity<BooksDTO> addBookWithAvailability(
             @RequestPart("file") MultipartFile file,

@@ -1,8 +1,8 @@
 import React from "react";
-import "./Subscription.css"; // Importowanie pliku CSS
+import "./Subscription.css";
 const SubscriptionItem = ({ platform, formats, onFormatChange }) => {
     const handleFormatChange = (formatId, isChecked) => {
-        onFormatChange(platform.id, formatId, isChecked, 'subscription'); // Przekazanie informacji o platformie
+        onFormatChange(platform.id, formatId, isChecked, 'subscription');
     };
 
     return (
@@ -15,6 +15,7 @@ const SubscriptionItem = ({ platform, formats, onFormatChange }) => {
                         id={`subscription-${platform.id}-${format.id}`}
                         name={`${platform.name}-${format.name}`}
                         onChange={(e) => handleFormatChange(format.id, e.target.checked)}
+                        className="subscription-checkbox"
                     />
                     <label htmlFor={`subscription-${platform.id}-${format.id}`}>{format.name}</label>
                 </div>

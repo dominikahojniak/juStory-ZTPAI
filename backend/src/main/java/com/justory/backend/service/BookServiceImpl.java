@@ -37,19 +37,7 @@ public class BookServiceImpl implements BookService {
         Optional<Books> booksOptional = booksRepository.findById(id);
         return booksOptional.map(booksMapper::toDTO).orElse(null);
     }
-    @Override
-    public BooksDTO addBook(BooksDTO bookDTO, MultipartFile file) {
-        String filePath = fileStorageService.saveFile(file, bookDTO.getId());
-        Books book = new Books();
-        book.setTitle(bookDTO.getTitle());
-        book.setAuthor(bookDTO.getAuthor());
-        book.setDescription(bookDTO.getDescription());
-        book.setISBN(bookDTO.getISBN());
-        book.setDate(bookDTO.getDate());
-        book.setImg(filePath);
-        Books savedBook = booksRepository.save(book);
-        return booksMapper.toDTO(savedBook);
-    }
+
     @Override
     public List<BooksDTO> searchBooks(String query) {
         List<Books> searchResults = booksRepository.findByTitleContainingOrAuthorContaining(query, query);

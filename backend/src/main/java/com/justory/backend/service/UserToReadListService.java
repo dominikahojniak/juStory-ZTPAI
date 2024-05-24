@@ -8,6 +8,5 @@ import java.util.List;
 public interface UserToReadListService {
     void addBookToUserToReadList(Integer userId, Integer bookId) throws Exception;
     void removeBookFromUserToReadList(Integer userId, Integer bookId);
-    List<UserToReadList> getUserToReadList(Integer userId);
     List<BooksDTO> getUserToReadBooks(Integer userId);
 }

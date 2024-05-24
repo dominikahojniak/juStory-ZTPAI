@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap');
 ::-webkit-scrollbar {
-    width: 8px; /* Szerokość paska przewijania */
+    width: 8px;
     height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #000; /* Kolor paska przewijania */
-    border-radius: 4px; /* Zakrzywienie rogów paska przewijania */
+    background-color: #000;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: transparent; /* Kolor tła paska przewijania */
+    background-color: transparent;
 }
 /*naglowek*/
 /*srodek*/
@@ -37,7 +37,6 @@ body{
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    flex-direction: column;
     margin: 0%;
     min-height: 100vh;
     overflow-y: auto;

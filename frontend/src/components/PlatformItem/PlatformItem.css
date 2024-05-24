@@ -12,8 +12,8 @@
     justify-content: center;
 }
 .options img {
-    width: 20px; /* zmniejsz rozmiar obrazka */
-    height: 20px; /* zmniejsz rozmiar obrazka */
+    width: 20px;
+    height: 20px;
 }
 @media (max-width: 900px) {
     

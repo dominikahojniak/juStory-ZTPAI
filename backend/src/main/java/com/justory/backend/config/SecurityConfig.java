@@ -47,7 +47,6 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers(
                                 HttpMethod.POST,
-                                "/api/books/add",
                                 "api/toread/addbook/**"
                         )
                         .permitAll()
