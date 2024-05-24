@@ -56,6 +56,7 @@ public class BookServiceImpl implements BookService {
         Books book = new Books();
         book.setTitle(bookDTO.getTitle());
         book.setAuthor(bookDTO.getAuthor());
+        book.setLanguage(bookDTO.getLanguage());
         book.setDescription(bookDTO.getDescription());
         book.setISBN(bookDTO.getISBN());
         book.setDate(bookDTO.getDate());

@@ -15,6 +15,7 @@ public class BooksDTO {
     private Integer id;
     private String title;
     private String author;
+    private String language;
     private String description;
     private String ISBN;
     private LocalDate date;

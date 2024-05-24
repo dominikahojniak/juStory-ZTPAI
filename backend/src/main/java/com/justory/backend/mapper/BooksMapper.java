@@ -17,6 +17,7 @@ public class BooksMapper {
                 .setId(book.getId())
                 .setTitle(book.getTitle())
                 .setAuthor(book.getAuthor())
+                .setLanguage(book.getLanguage())
                 .setDescription(book.getDescription())
                 .setISBN(book.getISBN())
                 .setDate(book.getDate())
