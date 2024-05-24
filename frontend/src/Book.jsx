@@ -74,7 +74,7 @@ const Book = () => {
                         <p>by {book.author}</p>
                         <p>date: {new Date(book.date).toLocaleDateString()}</p>
                         <p>ISBN: {book.isbn}</p>
-
+                        <p>language: {book.language}</p>
                     </div>
                     <div className="subscription">
                     <div className="news-title-container-book">

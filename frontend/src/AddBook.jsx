@@ -4,7 +4,10 @@ import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import Subscription from "./components/Subscription/Subscription.jsx";
 import Purchase from "./components/Purchase/Purchase.jsx";
-import axios from '../axiosConfig.js'; // Import Axios
+import axios from '../axiosConfig.js';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+import dayjs from 'dayjs';
 
 const AddBook = () => {
     const [platforms, setPlatforms] = useState([]);
@@ -12,7 +15,7 @@ const AddBook = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [ISBN, setISBN] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(dayjs());
     const [language, setLanguage] = useState('');
     const [description, setDescription] = useState('');
     const [file, setFile] = useState(null);
@@ -21,6 +24,10 @@ const AddBook = () => {
     const [subscriptionRequired, setSubscriptionRequired] = useState({});
     const [purchaseOption, setPurchaseOption] = useState({});
     const [errors, setErrors] = useState({
+        title: false,
+        author: false,
+        language: false,
+        description: false,
         ISBN: false,
         file: false,
     });
@@ -69,6 +76,15 @@ const AddBook = () => {
     };
     const handleChange = (e) => {
         const { name, value } = e.target;
+        let maxLength = 255;
+        if (name === 'description') {
+            maxLength = 2000;
+        }
+        if (value.length > maxLength) {
+            setErrors(prevErrors => ({ ...prevErrors, [name]: true }));
+        } else {
+            setErrors(prevErrors => ({ ...prevErrors, [name]: false }));
+        }
         if (name === 'file') {
             setFile(e.target.files[0]);
             setErrors(prevErrors => ({ ...prevErrors, file: !validateFile(e.target.files[0]) }));
@@ -97,7 +113,7 @@ const AddBook = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (errors.ISBN || errors.file) {
+        if (errors.ISBN || errors.file || errors.title || errors.author || errors.language || errors.description) {
             alert('Please fix validation errors.');
             return;
         }
@@ -111,7 +127,7 @@ const AddBook = () => {
             formData.append('bookDTO.title', title);
             formData.append('bookDTO.author', author);
             formData.append('bookDTO.ISBN', ISBN);
-            formData.append('bookDTO.date', date);
+            formData.append('bookDTO.date', date.format('YYYY-MM-DD'));
             formData.append('bookDTO.language', language);
             formData.append('bookDTO.description', description);
             selectedPlatforms.forEach((platformId, index) => {
@@ -147,12 +163,18 @@ const AddBook = () => {
                 </div>
                 <div className="addbook">
                     <form className="form-addbook" onSubmit={handleSubmit}>
-                        <input name="title" type="text" placeholder="title" id="title" value={title} onChange={handleChange} />
-                        <input name="author" type="text" placeholder="author" id="author" value={author} onChange={handleChange} />
+                        <input name="title" type="text" placeholder="title" id="title" value={title} onChange={handleChange} className={errors.title ? 'error' : ''} />
+                        <input name="author" type="text" placeholder="author" id="author" value={author} onChange={handleChange} className={errors.author ? 'error' : ''}/>
                         <input name="ISBN" type="text" placeholder="ISBN" id="ISBN" value={ISBN} onChange={handleChange} className={errors.ISBN ? 'error' : ''}/>
-                        <input name="date" type="text" placeholder="date" id="date" value={date} onChange={handleChange} />
-                        <input name="language" type="text" placeholder="language" id="language" value={language} onChange={handleChange} />
-                        <input name="description" type="text" placeholder="description" id="description" value={description} onChange={handleChange} />
+                        <DatePicker
+                            label="Select date"
+                            value={date}
+                            onChange={(newValue) => setDate(newValue)}
+                            renderInput={(params) => <input {...params} />}
+                            className="custom-date-picker"
+                        />
+                        <input name="language" type="text" placeholder="language" id="language" value={language} onChange={handleChange} className={errors.language ? 'error' : ''}/>
+                        <input name="description" type="text" placeholder="description" id="description" value={description} onChange={handleChange} className={errors.description ? 'error' : ''}/>
                         <input name="file" type="file" onChange={handleChange} className={errors.file ? 'error' : ''}/>
                         <Subscription platforms={platforms} formats={formats} onFormatChange={(platformId, formatId, isChecked) => handleFormatChange(platformId, formatId, isChecked, 'subscription')} />
                         <Purchase platforms={platforms} formats={formats} onFormatChange={(platformId, formatId, isChecked) => handleFormatChange(platformId, formatId, isChecked, 'purchase')} />

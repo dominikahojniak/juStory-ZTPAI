@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import Home from './Home.jsx';
 import Login from './Login.jsx';
 import SignUp from './Signup.jsx';
@@ -37,6 +39,7 @@ const App = () => {
         fetchUserProfile();
     }, []);
     return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Router>
             <Routes>
                 <Route exact path="/" element={<Home/>} />
@@ -63,6 +66,7 @@ const App = () => {
                 <Route exact path="/contact" element={<Contact />} />
             </Routes>
         </Router>
+        </LocalizationProvider>
     );
 }
 

@@ -81,6 +81,12 @@ body {
 .error {
     border: 2px solid red;
 }
+.custom-date-picker {
+    background-color:#D2CBC1;
+    opacity: 0.55;
+    width: 24vw;
+}
+
 @media (max-width: 900px) {
     body {
         width: calc(100vw - 1px);
