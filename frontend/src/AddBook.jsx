@@ -6,7 +6,7 @@ import Subscription from "./components/Subscription/Subscription.jsx";
 import Purchase from "./components/Purchase/Purchase.jsx";
 import axios from '../axiosConfig.js';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import InputFileUpload from "./components/InputFileUpload.jsx";
 import dayjs from 'dayjs';
 
 const AddBook = () => {
@@ -65,6 +65,7 @@ const AddBook = () => {
         setSubscriptionRequired(initialSubscriptionRequired);
         setPurchaseOption(initialPurchaseOption);
     }, [platforms]);
+
     const validateISBN = (value) => {
         const isbnRegex = /^[0-9]{13}$/;
         return isbnRegex.test(value);
@@ -73,6 +74,15 @@ const AddBook = () => {
         const allowedExtensions = ['.png', '.jpg'];
         const extension = file && file.name.toLowerCase().slice(-4);
         return file && allowedExtensions.includes(extension);
+    };
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        if (!validateFile(selectedFile)) {
+            setErrors(prevErrors => ({ ...prevErrors, file: true }));
+        } else {
+            setFile(selectedFile);
+            setErrors(prevErrors => ({ ...prevErrors, file: false }));
+        }
     };
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -85,15 +95,10 @@ const AddBook = () => {
         } else {
             setErrors(prevErrors => ({ ...prevErrors, [name]: false }));
         }
-        if (name === 'file') {
-            setFile(e.target.files[0]);
-            setErrors(prevErrors => ({ ...prevErrors, file: !validateFile(e.target.files[0]) }));
-        } else {
             eval(`set${name.charAt(0).toUpperCase() + name.slice(1)}`)(value);
             if (name === 'ISBN') {
                 setErrors(prevErrors => ({ ...prevErrors, ISBN: !validateISBN(value) }));
             }
-        }
 
     };
 
@@ -175,7 +180,7 @@ const AddBook = () => {
                         />
                         <input name="language" type="text" placeholder="language" id="language" value={language} onChange={handleChange} className={errors.language ? 'error' : ''}/>
                         <input name="description" type="text" placeholder="description" id="description" value={description} onChange={handleChange} className={errors.description ? 'error' : ''}/>
-                        <input name="file" type="file" onChange={handleChange} className={errors.file ? 'error' : ''}/>
+                        <InputFileUpload onChange={handleFileChange} error={errors.file}/>
                         <Subscription platforms={platforms} formats={formats} onFormatChange={(platformId, formatId, isChecked) => handleFormatChange(platformId, formatId, isChecked, 'subscription')} />
                         <Purchase platforms={platforms} formats={formats} onFormatChange={(platformId, formatId, isChecked) => handleFormatChange(platformId, formatId, isChecked, 'purchase')} />
                         <button type="submit" id="add-button">ADD BOOK</button>
