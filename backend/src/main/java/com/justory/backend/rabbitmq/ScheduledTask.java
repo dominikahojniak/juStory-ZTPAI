@@ -10,7 +10,7 @@ public class ScheduledTask {
     @Autowired
     private NotificationProducer notificationProducer;
 
-    @Scheduled(cron = "0 5 16 25 * ?") //sekundy, minuty, godziny, dzien miesiaca, miesiac, dzien tygodnia
+    @Scheduled(cron = "0 0 0 1 * ?") //sekundy, minuty, godziny, dzien miesiaca, miesiac, dzien tygodnia
     public void sendMonthlyEmailNotifications() {
         if (!emailSent) {
             String message = "Nowe premiery zostały dodane!";

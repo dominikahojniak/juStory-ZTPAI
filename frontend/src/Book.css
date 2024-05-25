@@ -136,6 +136,7 @@ body{
     overflow-x: auto;
     align-items: flex-end;
     flex-shrink: 0;
+    margin-top: 10px;
 }
 .items{
     display: flex;
@@ -245,6 +246,7 @@ body{
         width: 100vw;
         gap: 0.5rem;
         height: auto;
+        margin-top: 0px;
     }
 
 }

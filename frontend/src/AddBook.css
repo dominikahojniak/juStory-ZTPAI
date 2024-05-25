@@ -108,4 +108,7 @@ body {
         width: 90vw;
         margin-top: 5vh;
     }
+    .custom-date-picker {
+        width: 91vw;
+    }
 }
