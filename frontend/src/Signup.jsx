@@ -11,11 +11,20 @@ const SignUp = () => {
     const [phone, setPhone] = useState(null);
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+    const [errors, setErrors] = useState({
+        email: false,
+        name: false,
+        phone: false,
+        password: false,
+    });
     const handleRegister = async (event) => {
         event.preventDefault();
         if (!email || !name || !phone || !password) {
             alert('Please fill in all fields.');
+            return;
+        }
+        if (Object.values(errors).some(error => error)) {
+            alert('Please fix validation errors.');
             return;
         }
         try {
@@ -32,7 +41,17 @@ const SignUp = () => {
             alert('Registration failed');
         }
     };
+    const validatePhone = (value) => {
+        const phoneRegex = /^\d{9}$/;
+        return phoneRegex.test(value);
+    };
 
+    const handlePhoneChange = (e) => {
+        const value = e.target.value;
+        setPhone(value);
+        setErrors(prevErrors => ({ ...prevErrors, phone: !validatePhone(value) }));
+        console.log(errors.phone);
+    };
 
     return (
 
@@ -50,7 +69,7 @@ const SignUp = () => {
                         </div>
                         <input name="name" type="text" placeholder="name" id="name" value={name} onChange={e => setName(e.target.value)}/>
                         <input name="email" type="text" placeholder="email" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
-                        <input name="phone" type="text" placeholder="phone" id="phone" value={phone} onChange={e => setPhone(e.target.value)}/>
+                        <input name="phone" type="text" placeholder="phone" id="phone" value={phone} onChange={handlePhoneChange} className={errors.phone ? 'error' : ''}/>
                         <input name="password" type="password" placeholder="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
                         <button type="submit" id="signup-button"> SIGN UP</button>
                     </form>

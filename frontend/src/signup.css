@@ -85,6 +85,9 @@ body{
     font-family:'Frank Ruhl Libre',serif;
     font-size:22px;
 }
+.error {
+    border: 2px solid red !important;
+}
 @media (max-width: 900px) {
     body{
         width: calc(100vw - 1px);

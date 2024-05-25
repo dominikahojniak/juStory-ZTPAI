@@ -7,7 +7,6 @@
     height: 100%;
     text-decoration: none !important;
     text-decoration-color: transparent;
-
 }
 .news-image-homebook {
     width: 120px;
@@ -21,10 +20,10 @@
     text-decoration: none !important;
 }
 .news-description-homebook {
-    height: 60px; /* Ograniczenie wysokości kontenera dla tytułu */
-    overflow: hidden; /* Ukryj nadmiarowy tekst */
-    position: absolute; /* Ustawienie absolutne dla opisu */
-    bottom: 0; /* Ustawienie na dole */
+    height: 60px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
 }
@@ -36,8 +35,8 @@
     font-weight: 400;
     align-items: center;
     overflow-wrap: break-word;
-    white-space: normal; /* Ustawienie normalnej spacji */
-    overflow: hidden; /* Ukryj nadmiarowy tekst */
+    white-space: normal;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 

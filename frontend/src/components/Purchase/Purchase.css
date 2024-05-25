@@ -38,7 +38,7 @@
     font-size: 18px;
 }
 .purchase-checkbox {
-    -webkit-appearance: none; /* Remove default appearance */
+    -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     width: 18px;
@@ -50,7 +50,7 @@
 
 .purchase-checkbox:checked {
     background-color: #D2CBC1;
-    content: '\2713';/* Kolor tła po zaznaczeniu */
+    content: '\2713';
 }
 
 @media (max-width: 900px) {
