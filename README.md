@@ -1,6 +1,7 @@
 # WDPAI
 # juStory 📖
   <p> <img src="images/logo.png" alt="registerDesktop" width="50%" /> </p>
+
 ## Description
 
 The justStory book list application is a convenient tool for literature lovers.
