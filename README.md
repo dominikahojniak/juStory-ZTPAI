@@ -27,8 +27,8 @@ It allows users to track upcoming book releases and find places where they can p
 - **Registration and Login:**
     - Allows the user to create an account or log in, providing access to personalized application features.
     - <p align="center">
-        <img src="images/registerDesktop.png" alt="registerDesktop" width="65%" />
-        <img src="images/registerMobile.png" alt="registerMobile" width="19.5%" />
+        <img src="images/registerDesktop.png" alt="registerDesktop" width="76%" />
+        <img src="images/registerMobile.png" alt="registerMobile" width="23%" />
       </p>
 
 - **Home Page:**
