@@ -1,4 +1,4 @@
-# WDPAI
+# ZTPAI
 # juStory 📖
   <p> <img src="images/logo.png" alt="registerDesktop" width="50%" /> </p>
 
